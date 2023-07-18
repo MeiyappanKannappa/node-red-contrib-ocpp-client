@@ -13,6 +13,14 @@ There are no dependencies if you are just using the OCPP client to work with ser
 
 ### How to use it
 
+Install using
+```
+cd ~/.node-red     
+
+npm install @karthik1984/node-red-contrib-ocpp-client
+
+```
+
 The OCPP node has 1 input and 2 outputs.
 
 - Input node is used send OCPP1.6 commands to the OCPP server and receive the response in first output

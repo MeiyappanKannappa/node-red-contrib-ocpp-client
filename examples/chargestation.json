@@ -1,0 +1,521 @@
+[
+    {
+        "id": "330c7bb94c3bd552",
+        "type": "tab",
+        "label": "ChargingStation",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5ebeb998c714ad24",
+        "type": "ocpp-client",
+        "z": "330c7bb94c3bd552",
+        "name": "OCPP ",
+        "cbid": "NEW",
+        "server": "ws://localhost:8080/",
+        "cpv": "",
+        "cpm": "",
+        "password": "HiIAMPASSWORDDDDDDD",
+        "x": 430,
+        "y": 460,
+        "wires": [
+            [
+                "0cb544f1d2dca8d0"
+            ],
+            [
+                "d2165fabb7b05568"
+            ]
+        ]
+    },
+    {
+        "id": "b24efc12afe54ab6",
+        "type": "ui_switch",
+        "z": "330c7bb94c3bd552",
+        "name": "",
+        "label": "TurnOn",
+        "tooltip": "",
+        "group": "da89b9993aebc2a8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 120,
+        "y": 440,
+        "wires": [
+            [
+                "5ebeb998c714ad24"
+            ]
+        ]
+    },
+    {
+        "id": "0cb544f1d2dca8d0",
+        "type": "debug",
+        "z": "330c7bb94c3bd552",
+        "name": "CP-CSResponse",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "d2165fabb7b05568",
+        "type": "debug",
+        "z": "330c7bb94c3bd552",
+        "name": "CS-CPCommand",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "452874b28ef355a9",
+        "type": "inject",
+        "z": "330c7bb94c3bd552",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "generator",
+        "payload": "true",
+        "payloadType": "str",
+        "x": 120,
+        "y": 820,
+        "wires": [
+            [
+                "ce23d4790af72956"
+            ]
+        ]
+    },
+    {
+        "id": "444f095eaae7fdef",
+        "type": "power-monitor",
+        "z": "330c7bb94c3bd552",
+        "name": "car",
+        "startthreshold": "0",
+        "stopthreshold": 0,
+        "startafter": "0",
+        "stopafter": "10",
+        "energydecimals": "2",
+        "emitidle": true,
+        "x": 570,
+        "y": 700,
+        "wires": [
+            [
+                "3a985fd4ec3f3e34",
+                "cde8e2f55b9d65e6"
+            ]
+        ]
+    },
+    {
+        "id": "326678605f12312d",
+        "type": "ui_gauge",
+        "z": "330c7bb94c3bd552",
+        "name": "",
+        "group": "da89b9993aebc2a8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "PowerDisplayWatts",
+        "label": "kwh",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "10000000",
+        "colors": [
+            "#0dd30d",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 910,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "3a985fd4ec3f3e34",
+        "type": "function",
+        "z": "330c7bb94c3bd552",
+        "name": "getPower",
+        "func": "constMIN=1;\n\n\nconstMAX=20;\n\n//node.warn(\"Helloworld\")\n////Themaximumisexclusiveandtheminimumisinclusive\n//node.warn(msg);\n//node.warn(msg.payload.energy);\n//msg.payload=functiongetRandomInt(msg){\n\n//console.log(msg.payload);\n\n//if(msg.payload.energy)\n//returnmsg.payload.energy;\n//else\n//return0;\n\n//}();\n\nmsg.payload=msg.payload.energy;\n\n\n\n\n\nreturnmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 740,
+        "wires": [
+            [
+                "326678605f12312d",
+                "8f0cb5fd69915e5c"
+            ]
+        ]
+    },
+    {
+        "id": "8f0cb5fd69915e5c",
+        "type": "debug",
+        "z": "330c7bb94c3bd552",
+        "name": "debug2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "ce23d4790af72956",
+        "type": "function",
+        "z": "330c7bb94c3bd552",
+        "name": "consumerPower",
+        "func": "constMIN=3500;//wattsFor230v\n\n\nconstMAX=6600;//wattsfor440v\nconstCURRENT=15;//Inamps\nvarturnedOn=false;\n\nif(msg.payload=='green'){\nturnedOn=true;\n}else{\nturnedOn=false;\n}\nif(turnedOn){\nmsg.payload=functiongetRandomInt(min=MIN,max=MAX){\n\n\nmin=Math.ceil(min);\n\n\nmax=Math.floor(max);\n\n\n//return((Math.floor(Math.random()*(max-min))+min)*CURRENT)/1000;\nreturn((Math.floor(Math.random()*(max-min))+min));\n\n\n}();\n\n}else{\nmsg.payload=null;\n}\n\n\n\n\n\nreturnmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 760,
+        "wires": [
+            [
+                "444f095eaae7fdef",
+                "ac3456cadde13165",
+                "9d4a4c0f1e811b81",
+                "9a78d133f9b00d73"
+            ]
+        ]
+    },
+    {
+        "id": "ac3456cadde13165",
+        "type": "debug",
+        "z": "330c7bb94c3bd552",
+        "name": "power",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "db0955646f23cdfa",
+        "type": "ui_text",
+        "z": "330c7bb94c3bd552",
+        "group": "da89b9993aebc2a8",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "VehicleCharging",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 480,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "0997f507b1cd1298",
+        "type": "ui_ui-light",
+        "z": "330c7bb94c3bd552",
+        "action": "set",
+        "actionType": "str",
+        "write": "payload",
+        "writeType": "msg",
+        "name": "",
+        "group": "da89b9993aebc2a8",
+        "order": 5,
+        "width": 1,
+        "height": 1,
+        "x": 290,
+        "y": 620,
+        "wires": [
+            [
+                "db0955646f23cdfa"
+            ]
+        ]
+    },
+    {
+        "id": "2d60e9ff77eaf939",
+        "type": "ui_switch",
+        "z": "330c7bb94c3bd552",
+        "name": "",
+        "label": "ConnectVehicle",
+        "tooltip": "",
+        "group": "da89b9993aebc2a8",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "green",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "grey",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 80,
+        "y": 620,
+        "wires": [
+            [
+                "0997f507b1cd1298",
+                "ce23d4790af72956"
+            ]
+        ]
+    },
+    {
+        "id": "a5c8843ab7419baa",
+        "type": "ui_gauge",
+        "z": "330c7bb94c3bd552",
+        "name": "",
+        "group": "358ef2114df38b19",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "CurrentinA",
+        "label": "amps",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#00b500",
+            "#6c6c04",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 910,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "9a78d133f9b00d73",
+        "type": "function",
+        "z": "330c7bb94c3bd552",
+        "name": "voltageSimulate",
+        "func": "constMIN=220;\n\n\nconstMAX=230;\nconstCURRENT=15;\n\nnode.warn(msg.payload);\nif(msg.payload){\nmsg.payload=functiongetVoltageRandom(min=MIN,max=MAX){\n\n\n \nreturn(msg.payload/CURRENT);\n\n}();\n\n\n}else{\nmsg.payload=0;\n}\n\n\n\n\n\nreturnmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 920,
+        "wires": [
+            [
+                "75a61035f8d85e29",
+                "3b4d9c74b7a044dc"
+            ]
+        ]
+    },
+    {
+        "id": "75a61035f8d85e29",
+        "type": "debug",
+        "z": "330c7bb94c3bd552",
+        "name": "debug7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "9d4a4c0f1e811b81",
+        "type": "function",
+        "z": "330c7bb94c3bd552",
+        "name": "currentSimulate",
+        "func": "constMIN=5;\nconstMAX=20;\nconstCURRENT=14.1;\n\nmsg.payload=functiongetCurrentRandom(min=MIN,max=MAX){\nmin=Math.ceil(MIN);\nmax=Math.floor(MAX);\nreturn((Math.floor(Math.random()*(max-min))+min));\n}();\n\nreturnmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 860,
+        "wires": [
+            [
+                "75a61035f8d85e29",
+                "a5c8843ab7419baa"
+            ]
+        ]
+    },
+    {
+        "id": "3b4d9c74b7a044dc",
+        "type": "ui_level",
+        "z": "330c7bb94c3bd552",
+        "group": "358ef2114df38b19",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "voltage",
+        "colorHi": "#e60000",
+        "colorWarn": "#0cc07b",
+        "colorNormal": "#acc016",
+        "colorOff": "#595959",
+        "min": "50",
+        "max": "300",
+        "segWarn": "100",
+        "segHigh": "250",
+        "unit": "volts",
+        "layout": "sh",
+        "channelA": "",
+        "channelB": "",
+        "decimals": 0,
+        "animations": "soft",
+        "shape": 2,
+        "colorschema": "fixed",
+        "textoptions": "default",
+        "colorText": "#eeeeee",
+        "fontLabel": "",
+        "fontValue": "",
+        "fontSmall": "",
+        "colorFromTheme": true,
+        "textAnimations": false,
+        "hideValue": false,
+        "tickmode": "off",
+        "peakmode": false,
+        "property": "payload",
+        "peaktime": 3000,
+        "x": 770,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "cde8e2f55b9d65e6",
+        "type": "function",
+        "z": "330c7bb94c3bd552",
+        "name": "sendMeterValues",
+        "func": "\n\nvardata={\n\"MeterValues\":{\n\"connectorId\":21,\n\"transactionId\":12345,\n\"meterValue\":[\n{\n\"sampledValue\":[\n{\n\"unit\":\"Wh\",\n\"context\":\"Sample.Periodic\",\n\"measurand\":\"Temperature\",\n\"location\":\"Outlet\",\n\"value\":msg.payload.energy+\"\"\n},\n{\n\"unit\":\"W\",\n\"context\":\"Sample.Periodic\",\n\"measurand\":\"Temperature\",\n\"location\":\"Outlet\",\n\"value\":\"0\"\n}\n],\n\"timestamp\":\"2023-07-08T06:18:31.165374Z\"\n}\n]\n}\n};\n\n\nmsg.payload=data\n\n\nreturnmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 520,
+        "wires": [
+            [
+                "5ebeb998c714ad24",
+                "2ef35e71a3dd5a82"
+            ]
+        ]
+    },
+    {
+        "id": "2ef35e71a3dd5a82",
+        "type": "debug",
+        "z": "330c7bb94c3bd552",
+        "name": "debug8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "da89b9993aebc2a8",
+        "type": "ui_group",
+        "name": "ChargeStation",
+        "tab": "04a54185c824a2a7",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "358ef2114df38b19",
+        "type": "ui_group",
+        "name": "Monitor",
+        "tab": "04a54185c824a2a7",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "04a54185c824a2a7",
+        "type": "ui_tab",
+        "name": "Charge Station",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

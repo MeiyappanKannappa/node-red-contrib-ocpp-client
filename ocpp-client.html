@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ocpp-client',{
+        category: 'function',
+        color: '#00FF00',
+        defaults: {
+            name: {value:""},
+            cbid: {value:"",required:true},
+            server: {value:"ws://",required:true},
+            cpv: {value:""},
+            cpm: {value:""},
+            password: {value:""}
+        },
+        paletteLabel: "ocpp",
+        inputs:1,
+        outputs:2,
+        inputLabels:"OCPP Command request input",
+        outputLabels: ["CP-CS Response","CS-CP Command"],
+        icon: "ev.png",
+        label: function() {
+            return this.name||"ocpp-client";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="ocpp-client">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name"> <br/><br/>
+        <label for="node-input-server"><i class="fa fa-tag"></i> Server</label>
+        <input type="text" id="node-input-server" placeholder="ws://"><br/><br/>
+        <label for="node-input-cbid"><i class="fa fa-tag"></i> Identity</label>
+        <input type="text" id="node-input-cbid" placeholder=""><br/><br/>
+        <label for="node-input-password"><i class="fa fa-tag"></i> Password</label>
+        <input type="text" id="node-input-password" placeholder=""><br/>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="ocpp-client">
+    <p>A simple node that acts as OCPP client to send and receive data from OCPP / Chargepoint server</p>
+</script>

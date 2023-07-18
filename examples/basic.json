@@ -1,0 +1,361 @@
+[
+    {
+        "id": "cb37e2e6dd7ce13c",
+        "type": "tab",
+        "label": "MyOCPP",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "54ab74eb06921e61",
+        "type": "ocpp-client",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "OCPP ",
+        "cbid": "NEW",
+        "server": "ws://localhost:8080/",
+        "cpv": "",
+        "cpm": "",
+        "password": "HiIAMPASSWORDDDDDDD",
+        "x": 650,
+        "y": 380,
+        "wires": [
+            [
+                "a385f3e61103f7ed"
+            ],
+            [
+                "7e671098ef93aa16"
+            ]
+        ]
+    },
+    {
+        "id": "10bc56df1c7def81",
+        "type": "ui_switch",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "",
+        "label": "TurnOn",
+        "tooltip": "",
+        "group": "da89b9993aebc2a8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 580,
+        "y": 200,
+        "wires": [
+            [
+                "54ab74eb06921e61"
+            ]
+        ]
+    },
+    {
+        "id": "a385f3e61103f7ed",
+        "type": "debug",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "CP-CSResponse",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "9a5ae92892721279",
+        "type": "inject",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "BootNotification",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"BootNotification\":{\"chargePointVendor\":\"Mei\",\"chargePointModel\":\"MeiModel\",\"chargePointSerialNumber\":\"ABCDEFGHIJ\",\"chargeBoxSerialNumber\":\"ABCDEFGHIJK\",\"firmwareVersion\":\"1\",\"iccid\":\"ABCDEFGHIJKLMNOPQRS\",\"imsi\":\"ABCDEFGHIJKLMNO\",\"meterType\":\"\",\"meterSerialNumber\":\"1\"}}",
+        "payloadType": "json",
+        "x": 280,
+        "y": 240,
+        "wires": [
+            [
+                "54ab74eb06921e61"
+            ]
+        ]
+    },
+    {
+        "id": "2d1703bd67b5a7dc",
+        "type": "inject",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "DataTransfer",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"DataTransfer\":{\"vendorId\":\"ABCDEFGHIJKLM\",\"messageId\":\"ABCDEFGHI\",\"data\":\"ABCD\"}}",
+        "payloadType": "json",
+        "x": 270,
+        "y": 300,
+        "wires": [
+            [
+                "54ab74eb06921e61"
+            ]
+        ]
+    },
+    {
+        "id": "1ae3d6c70677f838",
+        "type": "inject",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "AuthorizeRequest",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Authorize\":{\"idTag\":\"ABCDEFGHIJKLMNOPQRS\"}}",
+        "payloadType": "json",
+        "x": 290,
+        "y": 360,
+        "wires": [
+            [
+                "54ab74eb06921e61"
+            ]
+        ]
+    },
+    {
+        "id": "c716e8f1561ac922",
+        "type": "inject",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "StatusNotification",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"StatusNotification\":{\"connectorId\":0,\"errorCode\":\"NoError\",\"status\":\"Available\",\"info\":\"ABCDEFGHIJKLMNOPQRSTUVWXY\",\"timestamp\":\"2023-07-08T06:18:31.165374Z\",\"vendorId\":\"ABCDEFGHIJKLMNOPQRSTUVWXYZA\",\"vendorErrorCode\":\"ABCDEFGHIJKLMNO\"}}",
+        "payloadType": "json",
+        "x": 290,
+        "y": 440,
+        "wires": [
+            [
+                "54ab74eb06921e61"
+            ]
+        ]
+    },
+    {
+        "id": "dd6da92f9168b1fb",
+        "type": "inject",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "StartTransaction",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"StartTransaction\":{\"connectorId\":1,\"idTag\":\"MEI-EXAMPLE-BOX\",\"meterStart\":0,\"timestamp\":\"2023-09-08T06:18:31.165374Z\"}}",
+        "payloadType": "json",
+        "x": 280,
+        "y": 500,
+        "wires": [
+            [
+                "54ab74eb06921e61"
+            ]
+        ]
+    },
+    {
+        "id": "4aad6d246ca636e7",
+        "type": "inject",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "StopTransaction",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"StopTransaction\":{\"transactionId\":0,\"timestamp\":\"2023-07-08T06:18:31.165374Z\",\"meterStop\":0,\"idTag\":\"MEI-EXAMPLE-BOX\",\"reason\":\"EVDisconnected\",\"transactionData\":[{\"timestamp\":\"2023-07-08T06:18:31.165374Z\",\"sampledValue\":[]},{\"timestamp\":\"2023-07-08T06:18:31.165374Z\",\"sampledValue\":[{\"value\":\"12\",\"context\":\"Sample.Clock\",\"format\":\"Raw\",\"measurand\":\"Power.Offered\",\"phase\":\"L1-L2\",\"location\":\"Inlet\",\"unit\":\"VA\"}]}]}}",
+        "payloadType": "json",
+        "x": 280,
+        "y": 560,
+        "wires": [
+            [
+                "54ab74eb06921e61"
+            ]
+        ]
+    },
+    {
+        "id": "499c84d571823377",
+        "type": "inject",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "MeterValues",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"MeterValues\":{\"connectorId\":0,\"transactionId\":12345,\"meterValue\":[{\"sampledValue\":[{\"unit\":\"Wh\",\"context\":\"Sample.Periodic\",\"measurand\":\"Temperature\",\"location\":\"Outlet\",\"value\":\"6.235000134\"},{\"unit\":\"W\",\"context\":\"Sample.Periodic\",\"measurand\":\"Temperature\",\"location\":\"Outlet\",\"value\":\"0\"}],\"timestamp\":\"2023-07-08T06:18:31.165374Z\"}]}}",
+        "payloadType": "json",
+        "x": 270,
+        "y": 620,
+        "wires": [
+            [
+                "54ab74eb06921e61"
+            ]
+        ]
+    },
+    {
+        "id": "7e671098ef93aa16",
+        "type": "debug",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "CS-CPCommand",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "15f9c4d353e091aa",
+        "type": "inject",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "simulateServerResponse",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"simulateServerResponse\":{\"status\":\"Rejected\"}}",
+        "payloadType": "json",
+        "x": 310,
+        "y": 180,
+        "wires": [
+            [
+                "54ab74eb06921e61"
+            ]
+        ]
+    },
+    {
+        "id": "68703febb4cc08cf",
+        "type": "ui_spacer",
+        "z": "cb37e2e6dd7ce13c",
+        "name": "spacer",
+        "group": "da89b9993aebc2a8",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "da89b9993aebc2a8",
+        "type": "ui_group",
+        "name": "ChargeStation",
+        "tab": "04a54185c824a2a7",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "04a54185c824a2a7",
+        "type": "ui_tab",
+        "name": "Charge Station",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

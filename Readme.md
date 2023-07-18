@@ -1,7 +1,7 @@
 # OCPP 1.6 client
 This library provides node red OCPP 1.6 client which can connect to any OCPP 1.6 server and it supports security profile 1. It can be extended to support security profile 2 and 3.
 
-### Pre-Reqsites
+### Pre-Requisites
 This library would require nodejs version 16 and above.
 
 ### Dependencies

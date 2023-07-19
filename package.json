@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "ocpp-rpc": "^2.0.1"
+    "ocpp-rpc": "2.0.0"
   },
   "node-red": {
     "version": ">=3.0.0",

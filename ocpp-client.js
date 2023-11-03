@@ -20,7 +20,17 @@ function handleEventsFromServer(node, msg) {
 function connectToOCPPServer(node, config, messages, msg) {
     try {
         console.log("connectToOCPPServer");
-        // await cli.connect(); console.log("server connected"); cli.connect().then((data1) => { msg.payload = data1; node.warn(msg); node.send([msg, null]); cli.call('BootNotification', { chargePointVendor: config.cpv || "simulator-vendor", chargePointModel: config.cpm || "simulator-model", }).then(data => { console.log('BootNotificationResponse: ', data) node.warn('BootNotificationResponse: ', data) msg.payload = data; node.warn(msg); node.send([msg, null]); }).catch(error => {console.log(error);node.warn(error)}); }).catch(error => {console.log(error);node.warn(error)});
+        cli.connect().then((data1) => {
+            msg.payload = data1; node.warn(msg);
+            node.send([msg, null]);
+            cli.call('BootNotification', { chargePointVendor: config.cpv || "simulator-vendor", chargePointModel: config.cpm || "simulator-model", })
+                .then(data => {
+                    console.log('BootNotificationResponse: ', data)
+                    node.warn('BootNotificationResponse: ', data)
+                    msg.payload = data; node.warn(msg);
+                    node.send([msg, null]);
+                }).catch(error => { console.log(error); node.warn(error) });
+        }).catch(error => { console.log(error); node.warn(error) });
 
         handleEventsFromServer(node, msg);
     } catch (error) { node.warn(error) }
